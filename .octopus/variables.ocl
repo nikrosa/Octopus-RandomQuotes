@@ -15,3 +15,9 @@ variable "Project.Connection.String" {
 variable "ConnectionStrings:Database" {
     value "#{Project.Connection.String}" {}
 }
+
+variable "Project.Database.User" {
+    value "RQ_user_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
