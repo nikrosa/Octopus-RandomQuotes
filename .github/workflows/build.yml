@@ -37,8 +37,8 @@ jobs:
           echo "::set-output name=OctopusEnvironmentName::$environmentName"
 
         shell: powershell  
-  build:
-
+  build-and-push-application:
+    needs: [get-release-information]
     runs-on: ubuntu-latest
     strategy:
       matrix:
