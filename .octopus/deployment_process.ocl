@@ -85,12 +85,12 @@ step "deploy-the-database-changes" {
         properties = {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $packagePath = $OctopusParameters["Octopus.Action.Package[RandomQuotes.DbUp].ExtractedPath"]
-                $connectionString = $OctopusParameters["Project.Database.ConnectionString"]
+                $connectionString = $OctopusParameters["Project.Connection.String"]
                 
-                $dllToRun = "$packagePath\sni.dll"
+                cd $packagePath
+                $appToRun = ".\RandomQuotes.DbUp"
                 
-                # How you run this .NET core app
-                dotnet $dllToRun --ConnectionString="$connectionString"
+                & $appToRun --ConnectionString="$connectionString" 
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
