@@ -70,25 +70,25 @@ jobs:
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false --p:Version=$VERSION_NUMBER
 
       - name: package website
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         run: |
-          octo pack --id="RandomQuotes" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/web" --outFolder="$GITHUB_WORKSPACE/artifacts"
+          octo pack --id="RandomQuotes" --format="Zip" --version="$VERSION_NUMBER" --basePath="$GITHUB_WORKSPACE/artifacts/web" --outFolder="$GITHUB_WORKSPACE/artifacts"
 
       - name: build database
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes.DbUp
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" -c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" -c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true --p:Version=$VERSION_NUMBER
       
       - name: package database
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         run: |
-          octo pack --id="RandomQuotes.DbUp" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/database" --outFolder="$GITHUB_WORKSPACE/artifacts"
+          octo pack --id="RandomQuotes.DbUp" --format="Zip" --version="$VERSION_NUMBER" --basePath="$GITHUB_WORKSPACE/artifacts/database" --outFolder="$GITHUB_WORKSPACE/artifacts"
 
       - name: push packages to Octopus
         uses: OctopusDeploy/push-package-action@v1.1.1
