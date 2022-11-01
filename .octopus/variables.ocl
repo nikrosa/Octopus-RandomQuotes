@@ -21,3 +21,9 @@ variable "Project.Database.User" {
         environment = ["development", "qa", "staging", "production"]
     }
 }
+
+variable "Project.Database.Report.Path" {
+    value "C:\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
