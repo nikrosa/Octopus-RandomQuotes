@@ -72,6 +72,7 @@ step "approve-database-delta" {
             Octopus.Action.Manual.BlockConcurrentDeployments = "True"
             Octopus.Action.Manual.Instructions = "Please approve the database delta script found in the artifacts section."
             Octopus.Action.Manual.ResponsibleTeamIds = "randomquotes-dbas"
+            Octopus.Action.RunOnServer = "false"
         }
     }
 }
@@ -86,10 +87,10 @@ step "deploy-the-database-changes" {
                 $packagePath = $OctopusParameters["Octopus.Action.Package[RandomQuotes.DbUp].ExtractedPath"]
                 $connectionString = $OctopusParameters["Project.Connection.String"]
                 
-                cd $packagePath
-                $appToRun = ".\Octopus.RandomQuotes.DbUp"
+                $dllToRun = "$packagePath/snl.dll"
                 
-                & $appToRun --ConnectionString="$connectionString" 
+                # How you run this .NET core app
+                dotnet $dllToRun --ConnectionString="$connectionString"
             EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
