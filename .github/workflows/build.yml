@@ -4,10 +4,7 @@ on: [push]
 
 env:
   OCTOPUS_PROJECT_NAME: RandomQuotes
-  OCTOPUS_FEATURE_BRANCH_CHANNEL: Default
-  OCTOPUS_FEATURE_BRANCH_ENVIRONMENT: Development
-  OCTOPUS_RELEASE_CHANNEL: Release
-  OCTOPUS_RELEASE_ENVIRONMENT: Staging
+  OCTOPUS_RELEASE_ENVIRONMENT: Development
   OCTOPUS_API_KEY: ${{ secrets.OCTOPUSSERVERAPIKEY }}
   OCTOPUS_HOST: ${{ secrets.OCTOPUSSERVERURL }}
 
@@ -22,16 +19,9 @@ jobs:
       - id: step1
         name: Get Octopus Information
         run: |
-          $locationOfProject = "src/RandomQuotes/RandomQuotes.csproj"
-          $projectContents = Get-Content $locationOfProject
-          $projectAsXML = [xml]$projectContents
-          $versionPrefix = $projectAsXML.Project.PropertyGroup.VersionPrefix
-
-          Write-Host "The version prefix is $versionPrefix"
-
           $environmentName = "${env:OCTOPUS_RELEASE_ENVIRONMENT}"
           Write-Host "The environment name is now $environmentName"
-          $versionNumber = "$($versionPrefix).${env:GITHUB_RUN_NUMBER}"
+          $versionNumber = "1.${env:GITHUB_RUN_NUMBER}"
           Write-Host "The version number is now $versionNumber"
 
           Write-Host "Setting the Output Variable VERSION to $versionNumber"
