@@ -2,6 +2,15 @@ name: RandomQuotes-build-test
 
 on: [push]
 
+env:
+  OCTOPUS_PROJECT_NAME: RandomQuotes
+  OCTOPUS_FEATURE_BRANCH_CHANNEL: Default
+  OCTOPUS_FEATURE_BRANCH_ENVIRONMENT: Development
+  OCTOPUS_RELEASE_CHANNEL: Release
+  OCTOPUS_RELEASE_ENVIRONMENT: Staging
+  OCTOPUS_API_KEY: ${{ secrets.OCTOPUSSERVERAPIKEY }}
+  OCTOPUS_HOST: ${{ secrets.OCTOPUSSERVERURL }}
+
 jobs:
   build:
 
@@ -47,3 +56,10 @@ jobs:
       - name: package database
         run: |
           octo pack --id="RandomQuotes.DbUp" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/database" --outFolder="$GITHUB_WORKSPACE/artifacts"
+
+      - name: push packages to Octopus
+        uses: OctopusDeploy/push-package-action@v1.1.1
+        with:
+          api_key: ${{ env.OCTOPUS_API_KEY }}
+          server: ${{ env.OCTOPUS_HOST }}
+          packages: "artifacts/RandomQuotes.DbUp.*.zip,artifacts/RandomQuotes.*.zip"
