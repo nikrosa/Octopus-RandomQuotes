@@ -1,6 +1,12 @@
 name: RandomQuotes-build-test
 
-on: [push]
+on:
+  push:
+    branches: 
+      - main
+      - 'feature/**'
+      - 'bugfix/**'
+  workflow_dispatch:
 
 env:
   OCTOPUS_PROJECT_NAME: RandomQuotes
