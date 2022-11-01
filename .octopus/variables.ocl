@@ -8,10 +8,6 @@ variable "Project.Database.Name" {
     }
 }
 
-variable "Project.Connection.String" {
-    value "Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;Database=#{Project.Database.Name}" {}
-}
-
 variable "ConnectionStrings:Database" {
     value "#{Project.Connection.String}" {}
 }
@@ -26,4 +22,8 @@ variable "Project.Database.Report.Path" {
     value "C:\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
         environment = ["development", "qa", "staging", "production"]
     }
+}
+
+variable "Project.Connection.String" {
+    value "Server=(localdb)\\MSSQLLocalDB;Database=#{Project.Database.Name};User ID=#{Project.Database.User};Password=#{Project.Database.Password}" {}
 }
