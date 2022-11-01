@@ -1,0 +1,49 @@
+name: RandomQuotes-build-test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: create artifacts folder
+        run: |
+          mkdir "$GITHUB_WORKSPACE/artifacts"
+          mkdir "$GITHUB_WORKSPACE/artifacts/web"
+          mkdir "$GITHUB_WORKSPACE/artifacts/database"
+
+      - name: install octopus cli
+        uses: OctopusDeploy/install-octopus-cli-action@v1.1.8
+        with:
+          version: latest
+
+      - name: restore dependencies for application
+        working-directory: src
+        run: dotnet restore
+
+      - name: build website
+        working-directory: src/RandomQuotes
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false
+
+      - name: package website
+        run: |
+          octo pack --id="RandomQuotes" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/web" --outFolder="$GITHUB_WORKSPACE/artifacts"
+
+      - name: build database
+        working-directory: src/RandomQuotes.DbUp
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" -c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true
+      
+      - name: package database
+        run: |
+          octo pack --id="RandomQuotes.DbUp" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/database" --outFolder="$GITHUB_WORKSPACE/artifacts"
