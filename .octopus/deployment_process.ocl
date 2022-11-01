@@ -49,5 +49,16 @@ step "generate-database-delta-report" {
             Octopus.Action.Script.Syntax = "PowerShell"
         }
         worker_pool = "database-deployments"
+
+        packages "RandomQuotes.DbUp" {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "RandomQuotes.DbUp"
+            properties = {
+                Extract = "True"
+                Purpose = ""
+                SelectionMode = "immediate"
+            }
+        }
     }
 }
