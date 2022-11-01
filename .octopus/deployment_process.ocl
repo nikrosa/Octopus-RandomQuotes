@@ -7,7 +7,7 @@ step "run-create-database-runbook" {
             Octopus.Action.Template.Version = "14"
             Run.Runbook.Api.Key = "#{Project.Runbook.API.Key}"
             Run.Runbook.AutoApproveManualInterventions = "No"
-            Run.Runbook.Base.Url = "#{Octopus.Web.ServerUri}"
+            Run.Runbook.Base.Url = "http://4.227.214.210"
             Run.Runbook.CancelInSeconds = "1800"
             Run.Runbook.DateTime = "N/A"
             Run.Runbook.Environment.Name = "#{Octopus.Environment.Name}"
