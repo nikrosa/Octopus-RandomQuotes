@@ -88,7 +88,7 @@ step "deploy-the-database-changes" {
                 $connectionString = $OctopusParameters["Project.Connection.String"]
                 
                 cd $packagePath
-                $appToRun = ".\Octopus.RandomQuotes.DbUp"
+                $appToRun = ".\Octopus.RandomQuotes.DbUp.DbUp"
                 
                 & $appToRun --ConnectionString="$connectionString"
             EOT
