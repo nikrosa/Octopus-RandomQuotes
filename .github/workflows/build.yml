@@ -12,6 +12,35 @@ env:
   OCTOPUS_HOST: ${{ secrets.OCTOPUSSERVERURL }}
 
 jobs:
+  get-release-information:
+    runs-on: windows-latest
+    outputs:
+      OCTOPUS_ENVIRONMENT: ${{ steps.step1.outputs.OctopusEnvironmentName }}
+      VERSION: ${{ steps.step1.outputs.OctopusVersionNumber }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: step1
+        name: Get Octopus Information
+        run: |
+          $locationOfProject = "src/RandomQuotes/RandomQuotes.csproj"
+          $projectContents = Get-Content $locationOfProject
+          $projectAsXML = [xml]$projectContents
+          $versionPrefix = $projectAsXML.Project.PropertyGroup.VersionPrefix
+
+          Write-Host "The version prefix is $versionPrefix"
+
+          $environmentName = "${env:OCTOPUS_RELEASE_ENVIRONMENT}"
+          Write-Host "The environment name is now $environmentName"
+          $versionNumber = "$($versionPrefix).${env:GITHUB_RUN_NUMBER}"
+          Write-Host "The version number is now $versionNumber"
+
+          Write-Host "Setting the Output Variable VERSION to $versionNumber"
+          echo "::set-output name=OctopusVersionNumber::$versionNumber"
+
+          Write-Host "Setting the Output Variable OCTOPUS_ENVIRONMENT to $environmentName"
+          echo "::set-output name=OctopusEnvironmentName::$environmentName"
+
+        shell: powershell  
   build:
 
     runs-on: ubuntu-latest
@@ -42,18 +71,26 @@ jobs:
         run: dotnet restore
 
       - name: build website
+        env:
+          VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes
         run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false
 
       - name: package website
+        env:
+          VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         run: |
           octo pack --id="RandomQuotes" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/web" --outFolder="$GITHUB_WORKSPACE/artifacts"
 
       - name: build database
+        env:
+          VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes.DbUp
         run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" -c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true
       
       - name: package database
+        env:
+          VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         run: |
           octo pack --id="RandomQuotes.DbUp" --format="Zip" --basePath="$GITHUB_WORKSPACE/artifacts/database" --outFolder="$GITHUB_WORKSPACE/artifacts"
 
@@ -62,4 +99,4 @@ jobs:
         with:
           api_key: ${{ env.OCTOPUS_API_KEY }}
           server: ${{ env.OCTOPUS_HOST }}
-          packages: "artifacts/RandomQuotes.DbUp.*"
+          packages: "artifacts/RandomQuotes.DbUp.${{ needs.get-release-information.outputs.VERSION }}.zip,artifacts/RandomQuotes.${{ needs.get-release-information.outputs.VERSION }}.zip"
