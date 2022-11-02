@@ -109,3 +109,84 @@ step "deploy-the-database-changes" {
         }
     }
 }
+
+step "deploy-ui" {
+    name = "Deploy UI"
+    properties = {
+        Octopus.Action.MaxParallelism = "1"
+        Octopus.Action.TargetRoles = "RandomQuotes-UI"
+    }
+
+    action "remove-from-load-balancer" {
+        action_type = "Octopus.Script"
+        environments = ["staging", "production"]
+        name = "Remove from Load Balancer"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $machineName = $OctopusParameters["Octopus.Machine.Name"]
+                
+                Write-Host "Remove $machineName from the Load Balancer."
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool_variable = ""
+    }
+
+    action "deploy-to-iis" {
+        action_type = "Octopus.IIS"
+        name = "Deploy to IIS"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.IISWebSite,Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
+            Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
+            Octopus.Action.IISWebSite.ApplicationPoolName = "Random Quotes"
+            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"http\",\"port\":\"8080\",\"host\":\"\",\"thumbprint\":null,\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
+            Octopus.Action.IISWebSite.CreateOrUpdateWebSite = "True"
+            Octopus.Action.IISWebSite.DeploymentType = "webSite"
+            Octopus.Action.IISWebSite.EnableAnonymousAuthentication = "False"
+            Octopus.Action.IISWebSite.EnableBasicAuthentication = "False"
+            Octopus.Action.IISWebSite.EnableWindowsAuthentication = "True"
+            Octopus.Action.IISWebSite.StartApplicationPool = "True"
+            Octopus.Action.IISWebSite.StartWebSite = "True"
+            Octopus.Action.IISWebSite.WebApplication.ApplicationPoolFrameworkVersion = "v4.0"
+            Octopus.Action.IISWebSite.WebApplication.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
+            Octopus.Action.IISWebSite.WebRoot = "#{Octopus.Environment.Name}"
+            Octopus.Action.IISWebSite.WebRootType = "relativeToPackageRoot"
+            Octopus.Action.IISWebSite.WebSiteName = "Random Quotes"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "RandomQuotes"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "RandomQuotes"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+
+    action "add-to-load-balancer" {
+        action_type = "Octopus.Script"
+        environments = ["staging", "production"]
+        name = "Add to Load Balancer "
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                $machineName = $OctopusParameters["Octopus.Machine.Name"]
+                
+                Write-Host "Add $machineName to the Load Balancer."
+            EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool_variable = ""
+    }
+}
