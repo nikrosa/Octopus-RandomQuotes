@@ -42,11 +42,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET Core SDK 3.1.402
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Set up DotNET Core
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 3.1.402
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.14
+        with:
+          versionSpec: 5.x
+      - id: determine_version
+        name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.14
+        with:
+          additionalArguments: /overrideconfig mode=Mainline
 
       - name: create artifacts folder
         run: |
@@ -59,15 +70,16 @@ jobs:
         with:
           version: latest
 
-      - name: restore dependencies for application
-        working-directory: src
+      - name: Install Dependencies
         run: dotnet restore
+        shell: bash
+
 
       - name: build website
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false --p:Version=$VERSION_NUMBER
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" --configuration Release --sc false --p:Version=$VERSION_NUMBER
 
       - name: package website
         env:
