@@ -156,7 +156,7 @@ step "deploy-ui" {
             Octopus.Action.IISWebSite.WebSiteName = "Random Quotes_#{Octopus.Environment.Name}"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
-            Octopus.Action.Package.CustomInstallationDirectory = "C:\\#{Octopus.Environment.Name}"
+            Octopus.Action.Package.CustomInstallationDirectory = "C:\\RandomQuotes\\#{Octopus.Environment.Name}"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "RandomQuotes"
