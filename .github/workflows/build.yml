@@ -21,7 +21,7 @@ jobs:
       OCTOPUS_ENVIRONMENT: ${{ steps.step1.outputs.OctopusEnvironmentName }}
       VERSION: ${{ steps.step1.outputs.OctopusVersionNumber }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - id: step1
         name: Get Octopus Information
         run: |
@@ -70,16 +70,15 @@ jobs:
         with:
           version: latest
 
-      - name: Install Dependencies
+      - name: restore dependencies for application
+        working-directory: src
         run: dotnet restore
-        shell: bash
-
 
       - name: build website
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" --configuration Release --sc false --p:Version=$VERSION_NUMBER
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false --p:Version=$VERSION_NUMBER
 
       - name: package website
         env:
