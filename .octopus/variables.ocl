@@ -18,18 +18,18 @@ variable "Project.Database.User" {
     }
 }
 
-variable "Project.Database.Report.Path" {
-    value "C:\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
-        environment = ["development", "qa", "staging", "production"]
-    }
-}
-
 variable "Project.Connection.String" {
     value "Server=asorkin-windows\\SQLEXPRESS; Database=#{Project.Database.Name}; User Id=#{Project.Database.User}; Password=#{Project.Database.Password}" {}
 }
 
 variable "DefaultConnection" {
     value "#{Project.Connection.String}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
+
+variable "Project.Database.Report.Path" {
+    value "C:\\RandomQuotes\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
         environment = ["development", "qa", "staging", "production"]
     }
 }
