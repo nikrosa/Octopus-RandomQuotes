@@ -27,3 +27,9 @@ variable "Project.Database.Report.Path" {
 variable "Project.Connection.String" {
     value "Server=asorkin-windows\\SQLEXPRESS; Database=#{Project.Database.Name}; User Id=#{Project.Database.User}; Password=#{Project.Database.Password}" {}
 }
+
+variable "Project.DefaultConnection" {
+    value "#{Project.Connection.String}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
