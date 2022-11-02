@@ -70,7 +70,7 @@ jobs:
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" --c Release --runtime win-x64 --sc false --p:Version=$VERSION_NUMBER
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/web" -c Release --runtime win-x64 --sc false --p:Version=$VERSION_NUMBER
 
       - name: package website
         env:
@@ -82,7 +82,7 @@ jobs:
         env:
           VERSION_NUMBER: ${{ needs.get-release-information.outputs.VERSION }}  
         working-directory: src/RandomQuotes.DbUp
-        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" --c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true --p:Version=$VERSION_NUMBER
+        run: dotnet publish --output "$GITHUB_WORKSPACE/artifacts/database" -c Release --runtime win-x64 --sc true --p:PublishSingleFile=true --p:PublishTrimmed=true --p:Version=$VERSION_NUMBER
       
       - name: package database
         env:
