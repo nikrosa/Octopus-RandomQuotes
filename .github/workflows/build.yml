@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  OCTOPUS_PROJECT_NAME: RandomQuotes
+  OCTOPUS_PROJECT_NAME: Random Quotes
   OCTOPUS_RELEASE_ENVIRONMENT: Development
   OCTOPUS_API_KEY: ${{ secrets.OCTOPUSSERVERAPIKEY }}
   OCTOPUS_HOST: ${{ secrets.OCTOPUSSERVERURL }}
@@ -96,3 +96,18 @@ jobs:
           api_key: ${{ env.OCTOPUS_API_KEY }}
           server: ${{ env.OCTOPUS_HOST }}
           packages: "artifacts/RandomQuotes.DbUp.${{ needs.get-release-information.outputs.VERSION }}.zip,artifacts/RandomQuotes.${{ needs.get-release-information.outputs.VERSION }}.zip"
+      
+      - name: create and deploy release
+        uses: OctopusDeploy/create-release-action@v1.1.1
+        with:
+          api_key: ${{ env.OCTOPUS_API_KEY }}
+          server: ${{ env.OCTOPUS_HOST }}
+          project: ${{ env.OCTOPUS_PROJECT_NAME }}
+          deploy_to: ${{ needs.get-release-information.outputs.OCTOPUS_ENVIRONMENT }}
+          release_number: ${{ needs.get-release-information.outputs.VERSION }}
+          package_version: ${{ needs.get-release-information.outputs.VERSION }}
+       
+
+
+
+
