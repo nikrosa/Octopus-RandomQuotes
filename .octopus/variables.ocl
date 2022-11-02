@@ -33,3 +33,21 @@ variable "Project.Database.Report.Path" {
         environment = ["development", "qa", "staging", "production"]
     }
 }
+
+variable "Project.Website.Port" {
+    value "8080" {
+        environment = ["development"]
+    }
+
+    value "8081" {
+        environment = ["qa"]
+    }
+
+    value "8082" {
+        environment = ["staging"]
+    }
+
+    value "8083" {
+        environment = ["production"]
+    }
+}
