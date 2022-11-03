@@ -1,9 +1,3 @@
-variable "Project.Database.Name" {
-    value "RandomQuotes_#{Octopus.Environment.Name}" {
-        environment = ["development", "qa", "staging"]
-    }
-}
-
 variable "ConnectionStrings:Database" {
     value "#{Project.Connection.String}" {}
 }
@@ -45,5 +39,11 @@ variable "Project.Website.Port" {
 
     value "8083" {
         environment = ["production"]
+    }
+}
+
+variable "Project.Database.Name" {
+    value "RandomQuotes_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
     }
 }
