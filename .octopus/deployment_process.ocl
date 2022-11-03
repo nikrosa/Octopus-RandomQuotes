@@ -119,7 +119,7 @@ step "deploy-ui" {
 
     action "remove-from-load-balancer" {
         action_type = "Octopus.Script"
-        environments = ["staging", "production"]
+        environments = ["production"]
         name = "Remove from Load Balancer"
         properties = {
             Octopus.Action.RunOnServer = "false"
@@ -191,7 +191,7 @@ step "deploy-ui" {
 
     action "add-to-load-balancer" {
         action_type = "Octopus.Script"
-        environments = ["staging", "production"]
+        environments = ["production"]
         name = "Add to Load Balancer "
         properties = {
             Octopus.Action.RunOnServer = "false"
