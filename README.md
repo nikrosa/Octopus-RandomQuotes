@@ -41,3 +41,4 @@ This is a command line application that accepts two parameters.  Please see this
 
 - ConnectionString: the connection string to the database.  Sent in as `--ConnectionString="CONNECTION STRING"`
 - PreviewReportPath: the path of the preview HTML report (useful for approvals).  Sent in as `--PreviewReportPath="PATH TO REPORT FILE"`
+
