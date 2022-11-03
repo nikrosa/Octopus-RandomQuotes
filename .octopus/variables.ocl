@@ -2,10 +2,6 @@ variable "Project.Database.Name" {
     value "RandomQuotes_#{Octopus.Environment.Name}" {
         environment = ["development", "qa", "staging"]
     }
-
-    value "RandomQuotes" {
-        environment = ["production"]
-    }
 }
 
 variable "ConnectionStrings:Database" {
