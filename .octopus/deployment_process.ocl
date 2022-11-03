@@ -134,19 +134,6 @@ step "deploy-ui" {
         worker_pool_variable = ""
     }
 
-    action "iis-apppool-stop" {
-        name = "IIS AppPool - Stop"
-        properties = {
-            AppPoolCheckDelay = "500"
-            AppPoolCheckRetries = "20"
-            AppPoolName = "Random Quotes_#{Octopus.Environment.Name}"
-            Octopus.Action.RunOnServer = "false"
-            Octopus.Action.Template.Id = "ActionTemplates-6"
-            Octopus.Action.Template.Version = "6"
-        }
-        worker_pool_variable = ""
-    }
-
     action "deploy-to-iis" {
         action_type = "Octopus.IIS"
         name = "Deploy to IIS"
