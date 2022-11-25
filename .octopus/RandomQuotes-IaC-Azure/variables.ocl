@@ -57,9 +57,9 @@ variable "Project.Azure.PrimaryLocation.Name" {
 }
 
 variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkin-storage-account-1" {}
+    value "asorkinsa1" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkin-storage-container-1" {}
+    value "asorkinsc1" {}
 }
