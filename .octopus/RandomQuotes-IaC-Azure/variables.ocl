@@ -47,3 +47,19 @@ variable "Project.Database.Name" {
         environment = ["development", "qa", "staging", "production"]
     }
 }
+
+variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
+    value "asorkin-rg1" {}
+}
+
+variable "Project.Azure.PrimaryLocation.Name" {
+    value "eastus" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
+    value "asorkin-storage-account-1" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
+    value "asorkin-storage-container-1" {}
+}
