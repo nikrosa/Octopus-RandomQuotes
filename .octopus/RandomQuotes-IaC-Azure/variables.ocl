@@ -69,3 +69,7 @@ variable "Project.Azure.Account.Name" {
 
     value "asorkin-azure" {}
 }
+
+variable "Project.Azure.RandomQuotes.DB.User" {
+    value "administrator" {}
+}
