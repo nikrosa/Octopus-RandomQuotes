@@ -58,12 +58,6 @@ variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
     value "asorkinsc1" {}
 }
 
-variable "Project.Azure.Account.Name" {
-    type = "AzureAccount"
-
-    value "asorkin-azure" {}
-}
-
 variable "Project.Azure.RandomQuotes.DB.User" {
     value "administrator" {}
 }
@@ -72,4 +66,10 @@ variable "Project.Azure.RandomQuotes.DB.Name" {
     value "RandomQuotes_#{Octopus.Environment.Name}" {
         environment = ["development", "qa", "staging", "production"]
     }
+}
+
+variable "Project.Azure.Account" {
+    type = "AzureAccount"
+
+    value "asorkin-azure" {}
 }
