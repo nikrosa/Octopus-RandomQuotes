@@ -79,5 +79,5 @@ variable "Project.Azure.RandomQuotes.Role" {
 }
 
 variable "Project.RandomQuotes.MSSQL.Server" {
-    value "asorkin_rq_mssql_server" {}
+    value "asorkin-rq-mssql-server" {}
 }
