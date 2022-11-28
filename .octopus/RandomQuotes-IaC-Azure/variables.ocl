@@ -68,7 +68,7 @@ variable "Project.Azure.RandomQuotes.DB.Name" {
     }
 }
 
-variable "Project.Azure.Account" {
+variable "Project.Azure.Account.Name" {
     type = "AzureAccount"
 
     value "asorkin-azure" {}
