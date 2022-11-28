@@ -56,8 +56,8 @@ resource "azurerm_storage_account" "asorkinsa1" {
 
   resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
     name                         = "asorkin_rq_mssql_server"
-    resource_group_name          = azurerm_resource_group.asorkin-rg1.name
-    location                     = azurerm_resource_group.asorkin-rg1.location
+    resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
+    location                        = "#{Project.Azure.PrimaryLocation.Name}"
     version                      = "12.0"
     administrator_login          = "#{Project.Azure.RandomQuotes.DB.User}"
     administrator_login_password = "#{Project.Azure.RandomQuotes.DB.Password}"
@@ -90,8 +90,8 @@ resource "azurerm_storage_account" "asorkinsa1" {
 
   resource "azurerm_service_plan" "asorkin_rq_sp" {
     name                         = "asorkin_rq_sp"
-    resource_group_name          = azurerm_resource_group.asorkin-rg1.name
-    location                     = azurerm_resource_group.asorkin-rg1.location
+    resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
+    location                        = "#{Project.Azure.PrimaryLocation.Name}"
     sku {
       tier = "Standard"
       size = "S1"
@@ -107,8 +107,8 @@ resource "azurerm_storage_account" "asorkinsa1" {
 
   resource "azurerm_windows_web_app" "asorkin_rq_web_app" {
     name                = "asorkin_rq_web_app"
-    resource_group_name          = azurerm_resource_group.asorkin-rg1.name
-    location                     = azurerm_resource_group.asorkin-rg1.location
+    resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
+    location                        = "#{Project.Azure.PrimaryLocation.Name}"
     service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
   
     site_config {}
