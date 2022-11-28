@@ -42,12 +42,6 @@ variable "Project.Website.Port" {
     }
 }
 
-variable "Project.Database.Name" {
-    value "RandomQuotes_#{Octopus.Environment.Name}" {
-        environment = ["development", "qa", "staging", "production"]
-    }
-}
-
 variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
     value "asorkin-rg1" {}
 }
@@ -72,4 +66,10 @@ variable "Project.Azure.Account.Name" {
 
 variable "Project.Azure.RandomQuotes.DB.User" {
     value "administrator" {}
+}
+
+variable "Project.Azure.RandomQuotes.DB.Name" {
+    value "RandomQuotes_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
 }
