@@ -77,3 +77,7 @@ variable "Project.Azure.Account.Name" {
 variable "Project.Azure.RandomQuotes.Role" {
     value "RandomQuotes-UI-AzureWebApp" {}
 }
+
+variable "Project.RandomQuotes.MSSQL.Server" {
+    value "asorkin_rq_mssql_server" {}
+}
