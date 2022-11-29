@@ -48,7 +48,7 @@ resource "azurerm_storage_account" "asorkinsa1" {
 # SQL Server #
 
 resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
-  name                         = "asorkin-rq-mssql-server"
+  name                         = "#{Project.Azure.RandomQuotes.MSSQL.Server}"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   version                      = "12.0"
@@ -80,7 +80,7 @@ resource "azurerm_mssql_database" "asorkin_rq_database" {
 ###########################################
 
 resource "azurerm_service_plan" "asorkin_rq_sp" {
-  name                         = "asorkin-rq-sp"
+  name                         = "#{Project.Azure.RandomQuotes.ServicePlan.Name}"
   resource_group_name          = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                     = "#{Project.Azure.PrimaryLocation.Name}"
   os_type                      = "Windows"
@@ -92,7 +92,7 @@ resource "azurerm_service_plan" "asorkin_rq_sp" {
 ###########################################
 
 resource "azurerm_windows_web_app" "asorkin_rq_web_app" {
-  name                = "asorkin-rq-web-app"
+  name                = "#{Project.Azure.RandomQuotes.WebApp.Name}"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
