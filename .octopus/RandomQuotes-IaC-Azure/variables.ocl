@@ -74,10 +74,18 @@ variable "Project.Azure.RandomQuotes.Role" {
     value "RandomQuotes-UI-AzureWebApp" {}
 }
 
-variable "Project.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server" {}
-}
-
 variable "Project.Azure.RandomQuotes.DB.User" {
     value "asorkin-admin" {}
+}
+
+variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
+    value "asorkin-rq-sp" {}
+}
+
+variable "Project.Azure.RandomQuotes.WebApp.Name" {
+    value "asorkin-rq-web-app" {}
+}
+
+variable "Project.Azure.RandomQuotes.MSSQL.Server" {
+    value "asorkin-rq-mssql-server" {}
 }
