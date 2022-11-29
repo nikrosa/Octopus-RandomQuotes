@@ -40,7 +40,6 @@ resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
 
 resource "azurerm_mssql_firewall_rule" "allow-octopus-server" {
   name                = "allow-octopus-server"
-  resource_group_name = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   server_id         = "#{Project.Azure.RandomQuotes.MSSQL.Server}"
   start_ip_address = "4.227.214.210"
   end_ip_address   = "4.227.214.210"
