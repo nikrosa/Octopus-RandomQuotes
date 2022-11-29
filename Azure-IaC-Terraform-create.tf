@@ -92,7 +92,7 @@ resource "azurerm_service_plan" "asorkin_rq_sp" {
 ###########################################
 
 resource "azurerm_windows_web_app" "asorkin_rq_web_app" {
-  name                = "#{Project.Azure.RandomQuotes.WebApp.Name}_#{Octopus.Environment.Name}"
+  name                = "#{Project.Azure.RandomQuotes.WebApp.Name}-#{Octopus.Environment.Name}"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
