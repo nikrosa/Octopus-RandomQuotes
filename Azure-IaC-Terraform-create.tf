@@ -25,7 +25,7 @@ provider "azurerm" {
 # Resource Group #
 ###########################################
 
-resource "azurerm_resource_group" "asorkin-rg1" {
+resource "azurerm_resource_group" "asorkin-randomquotes" {
   name     = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location = "#{Project.Azure.PrimaryLocation.Name}"
 }
