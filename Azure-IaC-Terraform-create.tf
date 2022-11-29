@@ -28,7 +28,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "asorkin-rg1" {
   name     = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location = "#{Project.Azure.PrimaryLocation.Name}"
-
+}
 ###########################################
 # Storage Account #
 ###########################################
