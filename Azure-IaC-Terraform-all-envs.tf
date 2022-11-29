@@ -38,6 +38,15 @@ resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
   public_network_access_enabled   = true
 }
 
+resource "azurerm_mysql_firewall_rule" "local_allow" {
+  name                = "AllowLocalIp"
+  resource_group_name = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
+  server_name         = "#{Project.Azure.RandomQuotes.MSSQL.Server}"
+
+  start_ip_address = 4.227.214.210
+  end_ip_address   = 4.227.214.210
+}
+
 # SQL Databases #
 
 resource "azurerm_mssql_database" "asorkin_rq_database_dev" {
