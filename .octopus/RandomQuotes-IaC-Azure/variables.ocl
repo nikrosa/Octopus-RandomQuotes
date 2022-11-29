@@ -89,3 +89,11 @@ variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
     value "asorkinsc4" {}
 }
+
+variable "Octopus.Azure.Account" {
+    type = "AzureAccount"
+
+    value "asorkin-azure" {
+        description = ""
+    }
+}
