@@ -39,8 +39,9 @@ resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
 }
 
 resource "azurerm_mssql_firewall_rule" "allow-octopus-server" {
+  depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
   name                = "allow-octopus-server"
-  server_id         = "#{Project.Azure.RandomQuotes.MSSQL.Server}"
+  server_id         = azurerm_mssql_server.asorkin_rq_mssql_server.id
   start_ip_address = "4.227.214.210"
   end_ip_address   = "4.227.214.210"
 }
