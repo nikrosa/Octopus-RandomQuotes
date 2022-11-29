@@ -90,16 +90,16 @@ resource "azurerm_windows_web_app" "asorkin_rq_web_app" {
 # Azure Windows Web App Slot #
 ###########################################
 
-resource "azurerm_windows_web_app_slot" "stage" {
-  name           = "stage"
-  app_service_id = azurerm_windows_web_app.asorkin_rq_web_app.id
+#resource "azurerm_windows_web_app_slot" "stage" {
+#  name           = "stage"
+#  app_service_id = azurerm_windows_web_app.asorkin_rq_web_app.id
 
-  site_config {}
-}
+#  site_config {}
+#}
 
-resource "azurerm_windows_web_app_slot" "prod" {
-  name           = "prod"
-  app_service_id = azurerm_windows_web_app.asorkin_rq_web_app.id
+#resource "azurerm_windows_web_app_slot" "prod" {
+#  name           = "prod"
+#  app_service_id = azurerm_windows_web_app.asorkin_rq_web_app.id
 
-  site_config {}
-}
+#  site_config {}
+#}
