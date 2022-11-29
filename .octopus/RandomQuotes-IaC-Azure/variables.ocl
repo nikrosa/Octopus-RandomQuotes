@@ -8,10 +8,6 @@ variable "Project.Database.User" {
     }
 }
 
-variable "Project.Connection.String" {
-    value "Server=asorkin-windows\\SQLEXPRESS; Database=#{Project.Database.Name}; User Id=#{Project.Database.User}; Password=#{Project.Database.Password}" {}
-}
-
 variable "DefaultConnection" {
     value "#{Project.Connection.String}" {
         environment = ["development", "qa", "staging", "production"]
@@ -88,4 +84,8 @@ variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
 
 variable "Project.Azure.RandomQuotes.WebApp.Name" {
     value "asorkin-rq-web-app3" {}
+}
+
+variable "Project.Connection.String" {
+    value "Server=tcp:#{Project.Azure.RandomQuotes.MSSQL.Server}.database.windows.net,1433;Initial Catalog=#{Project.Azure.RandomQuotes.DB.Name};Persist Security Info=False;User ID=#{Project.Azure.RandomQuotes.DB.User};Password=#{Project.Azure.RandomQuotes.DB.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
 }
