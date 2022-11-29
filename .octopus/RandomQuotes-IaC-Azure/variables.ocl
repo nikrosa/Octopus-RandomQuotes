@@ -70,10 +70,6 @@ variable "Project.Azure.RandomQuotes.MSSQL.Server" {
     value "asorkin-rq-mssql-server2" {}
 }
 
-variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
-    value "asorkin-rg2" {}
-}
-
 variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
     value "asorkin-rq-sp2" {}
 }
@@ -88,4 +84,8 @@ variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
 
 variable "Project.Azure.RandomQuotes.WebApp.Name" {
     value "asorkin-rq-web-app2" {}
+}
+
+variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
+    value "asorkin-randomquotes" {}
 }
