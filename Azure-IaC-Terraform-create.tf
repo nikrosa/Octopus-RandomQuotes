@@ -14,7 +14,7 @@ terraform {
     resource_group_name  = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
     storage_account_name = "#{Project.Azure.RandomQuotes.StorageAccount.Name}"
     container_name       = "#{Project.Azure.RandomQuotes.StorageContainer.Name}"
-    key                  = "terraform.tfstate"
+    key                  = "terraform-#{Octopus.Environment.Name}.tfstate"
   }
 }
 provider "azurerm" {
