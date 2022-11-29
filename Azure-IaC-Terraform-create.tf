@@ -22,26 +22,6 @@ provider "azurerm" {
 }
 
 ###########################################
-# Resource Group #
-###########################################
-
-resource "azurerm_resource_group" "asorkin-randomquotes" {
-  name     = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
-  location = "#{Project.Azure.PrimaryLocation.Name}"
-}
-###########################################
-# Storage Account #
-###########################################
-
-resource "azurerm_storage_account" "asorkinsa1" {
-  name                            = "#{Project.Azure.RandomQuotes.StorageAccount.Name}"
-  resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
-  location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  account_tier                    = "Standard"
-  account_replication_type        = "LRS"
-}
-
-###########################################
 # Azure SQL #
 ###########################################
 
@@ -92,7 +72,7 @@ resource "azurerm_service_plan" "asorkin_rq_sp" {
 ###########################################
 
 resource "azurerm_windows_web_app" "asorkin_rq_web_app" {
-  name                = "#{Project.Azure.RandomQuotes.WebApp.Name}-#{Octopus.Environment.Name}"
+  name                = "#{Project.Azure.RandomQuotes.WebApp.Name}"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
