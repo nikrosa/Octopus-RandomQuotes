@@ -43,8 +43,8 @@ resource "azurerm_mysql_firewall_rule" "local_allow" {
   resource_group_name = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   server_name         = "#{Project.Azure.RandomQuotes.MSSQL.Server}"
 
-  start_ip_address = 4.227.214.210
-  end_ip_address   = 4.227.214.210
+  start_ip_address = "4.227.214.210"
+  end_ip_address   = "4.227.214.210"
 }
 
 # SQL Databases #
