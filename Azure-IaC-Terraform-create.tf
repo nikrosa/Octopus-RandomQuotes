@@ -28,10 +28,6 @@ provider "azurerm" {
 resource "azurerm_resource_group" "asorkin-rg1" {
   name     = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location = "#{Project.Azure.PrimaryLocation.Name}"
-  tags = {
-    environment = "#{Octopus.Environment.Name}"    	
-  }
-}
 
 ###########################################
 # Storage Account #
@@ -43,9 +39,6 @@ resource "azurerm_storage_account" "asorkinsa1" {
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   account_tier                    = "Standard"
   account_replication_type        = "LRS"
-  tags = {
-    environment = "#{Octopus.Environment.Name}"    	
-  }
 }
 
 ###########################################
@@ -63,9 +56,6 @@ resource "azurerm_mssql_server" "asorkin_rq_mssql_server" {
   administrator_login_password = "#{Project.Azure.RandomQuotes.DB.Password}"
   minimum_tls_version             = "1.2"
   public_network_access_enabled   = true
-  tags = {
-    environment = "#{Octopus.Environment.Name}"    	
-  }
 }
 
 # SQL Database #
@@ -95,9 +85,6 @@ resource "azurerm_service_plan" "asorkin_rq_sp" {
   location                     = "#{Project.Azure.PrimaryLocation.Name}"
   os_type                      = "Windows"
   sku_name = "S1"
-  tags = {
-    environment = "#{Octopus.Environment.Name}"    	
-  }  
 }
 
 ###########################################
