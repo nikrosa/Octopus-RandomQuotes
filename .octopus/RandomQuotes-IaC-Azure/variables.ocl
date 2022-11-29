@@ -66,28 +66,8 @@ variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
     value "asorkin-randomquotes" {}
 }
 
-variable "Project.Azure.RandomQuotes.WebApp.Name" {
-    value "asorkin-rq-web-app3" {}
-}
-
 variable "Project.Connection.String" {
     value "Server=tcp:#{Project.Azure.RandomQuotes.MSSQL.Server}.database.windows.net,1433;Initial Catalog=#{Project.Azure.RandomQuotes.DB.Name};Persist Security Info=False;User ID=#{Project.Azure.RandomQuotes.DB.User};Password=#{Project.Azure.RandomQuotes.DB.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
-}
-
-variable "Project.Azure.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server4" {}
-}
-
-variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp4" {}
-}
-
-variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa4" {}
-}
-
-variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc4" {}
 }
 
 variable "Octopus.Azure.Account" {
@@ -96,4 +76,24 @@ variable "Octopus.Azure.Account" {
     value "asorkin-azure" {
         description = ""
     }
+}
+
+variable "Project.Azure.RandomQuotes.MSSQL.Server" {
+    value "asorkin-rq-mssql-server5" {}
+}
+
+variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
+    value "asorkin-rq-sp5" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
+    value "asorkinsa5" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
+    value "asorkinsc5" {}
+}
+
+variable "Project.Azure.RandomQuotes.WebApp.Name" {
+    value "asorkin-rq-web-app" {}
 }
