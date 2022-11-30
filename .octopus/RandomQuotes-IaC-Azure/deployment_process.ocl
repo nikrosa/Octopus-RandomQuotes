@@ -94,6 +94,20 @@ step "deploy-to-web-app" {
     action {
         action_type = "Octopus.AzureAppService"
         properties = {
+            Octopus.Action.Azure.AppSettings = <<-EOT
+                [
+                   {
+                      "name": "AppSettings.EnvironmentName",
+                      "value": "#{Octopus.Environment.Name}",
+                      "slotSetting": false
+                   },
+                   {
+                      "name": "AppSettings.AppVersion",
+                      "value": "#{Octopus.Release.Number}",
+                      "slotSetting": false
+                   }
+                ]
+            EOT
             Octopus.Action.Azure.ConnectionStrings = <<-EOT
                 [
                    {
@@ -108,7 +122,6 @@ step "deploy-to-web-app" {
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
-            Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "RandomQuotes"
             Octopus.Action.RunOnServer = "false"
             OctopusUseBundledTooling = "False"
