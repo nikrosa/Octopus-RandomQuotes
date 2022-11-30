@@ -135,7 +135,7 @@ resource "azurerm_app_service" "asorkin_rq_web_app_dev" {
   app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
+    linux_fx_version = "DOTNETCORE|6.0"
   }
 
   tags = {
@@ -152,7 +152,7 @@ resource "azurerm_app_service" "asorkin_rq_web_app_qa" {
   app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
+    linux_fx_version = "DOTNETCORE|6.0"
   }
 
   tags = {
@@ -169,7 +169,7 @@ resource "azurerm_app_service" "asorkin_rq_web_app_stage" {
   app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
+    linux_fx_version = "DOTNETCORE|6.0"
   }
 
   tags = {
@@ -186,7 +186,7 @@ resource "azurerm_app_service" "asorkin_rq_web_app_prod" {
   app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
+    linux_fx_version = "DOTNETCORE|6.0"
   }
 
   tags = {
