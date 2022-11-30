@@ -94,11 +94,23 @@ step "deploy-to-web-app" {
     action {
         action_type = "Octopus.AzureAppService"
         properties = {
+            Octopus.Action.Azure.ConnectionStrings = <<-EOT
+                [
+                   {
+                      "name": "#{Project.Azure.RandomQuotes.DB.Name}",
+                      "value": "#{Project.Connection.String}",
+                      "type": "SQLAzure",
+                      "slotSetting": false
+                   }
+                ]
+            EOT
             Octopus.Action.Azure.DeploymentType = "Package"
+            Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "RandomQuotes"
+            Octopus.Action.RunOnServer = "false"
             OctopusUseBundledTooling = "False"
         }
         worker_pool_variable = ""
