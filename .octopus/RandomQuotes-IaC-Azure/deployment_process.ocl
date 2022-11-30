@@ -111,7 +111,7 @@ step "deploy-to-web-app" {
             Octopus.Action.Azure.ConnectionStrings = <<-EOT
                 [
                    {
-                      "name": "#{Project.Azure.RandomQuotes.DB.Name}",
+                      "name": "DefaultConnection",
                       "value": "#{Project.Connection.String}",
                       "type": "SQLAzure",
                       "slotSetting": false
