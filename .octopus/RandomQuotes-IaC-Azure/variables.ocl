@@ -83,17 +83,17 @@ variable "Project.Azure.RandomQuotes.WebApp.Name" {
 }
 
 variable "Project.Azure.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server8" {}
+    value "asorkin-rq-mssql-server9" {}
 }
 
 variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp8" {}
+    value "asorkin-rq-sp9" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa8" {}
+    value "asorkinsa9" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc8" {}
+    value "asorkinsc9" {}
 }
