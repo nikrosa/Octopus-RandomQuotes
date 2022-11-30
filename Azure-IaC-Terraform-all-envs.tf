@@ -116,7 +116,7 @@ resource "azurerm_service_plan" "asorkin_rq_sp" {
   name                         = "#{Project.Azure.RandomQuotes.ServicePlan.Name}"
   resource_group_name          = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                     = "#{Project.Azure.PrimaryLocation.Name}"
-  os_type                      = "Linux"
+  os_type                      = "Windows"
   sku_name = "S1"
 }
 
@@ -130,9 +130,7 @@ resource "azurerm_windows_web_app" "asorkin_rq_web_app_dev" {
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
-  site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
-  }
+  site_config {}
 
   tags = {
     octopus-environment = "Development"
@@ -147,9 +145,7 @@ resource "azurerm_windows_web_app" "asorkin_rq_web_app_qa" {
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
-  site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
-  }
+  site_config {}
 
   tags = {
     octopus-environment = "QA"
@@ -164,9 +160,7 @@ resource "azurerm_windows_web_app" "asorkin_rq_web_app_stage" {
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
-  site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
-  }
+  site_config {}
 
   tags = {
     octopus-environment = "Staging"
@@ -181,9 +175,7 @@ resource "azurerm_windows_web_app" "asorkin_rq_web_app_prod" {
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
   service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
-  site_config {
-    linux_fx_version = "DOTNETCORE|3.1"
-  }
+  site_config {}
 
   tags = {
     octopus-environment = "Production"
