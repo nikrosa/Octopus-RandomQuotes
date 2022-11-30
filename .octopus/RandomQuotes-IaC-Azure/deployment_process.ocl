@@ -122,6 +122,7 @@ step "deploy-to-web-app" {
             Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
             Octopus.Action.Package.PackageId = "RandomQuotes"
             Octopus.Action.RunOnServer = "false"
             OctopusUseBundledTooling = "False"
