@@ -97,3 +97,11 @@ variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
     value "asorkinsc10" {}
 }
+
+variable "AppVersion" {
+    value "#{Octopus.Release.Number}" {}
+}
+
+variable "EnvironmentName" {
+    value "#{Octopus.Environment.Name}" {}
+}
