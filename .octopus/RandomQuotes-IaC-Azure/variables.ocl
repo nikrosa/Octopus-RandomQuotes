@@ -82,26 +82,26 @@ variable "Project.Azure.RandomQuotes.WebApp.Name" {
     value "asorkin-rq-web-app" {}
 }
 
-variable "Project.Azure.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server10" {}
-}
-
-variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp10" {}
-}
-
-variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa10" {}
-}
-
-variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc10" {}
-}
-
 variable "AppVersion" {
     value "#{Octopus.Release.Number}" {}
 }
 
 variable "EnvironmentName" {
     value "#{Octopus.Environment.Name}" {}
+}
+
+variable "Project.Azure.RandomQuotes.MSSQL.Server" {
+    value "asorkin-rq-mssql-server11" {}
+}
+
+variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
+    value "asorkin-rq-sp11" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
+    value "asorkinsa11" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
+    value "asorkinsc11" {}
 }
