@@ -112,30 +112,28 @@ resource "azurerm_mssql_database" "asorkin_rq_database_prod" {
 # Azure Service Plan #
 ###########################################
 
-resource "azurerm_app_service_plan" "asorkin_rq_sp" {
+resource "azurerm_service_plan" "asorkin_rq_sp" {
   name                         = "#{Project.Azure.RandomQuotes.ServicePlan.Name}"
   resource_group_name          = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                     = "#{Project.Azure.PrimaryLocation.Name}"
-  kind                         = "Linux"
-  reserved                     = true
-  sku {
-    tier = "Basic"
-    size = "B1"
-  }
+  os_type                      = "Linux"
+  sku_name = "B1"
 }
 
 ###########################################
-# Azure Windows Web Apps #
+# Azure Web Apps #
 ###########################################
 
-resource "azurerm_app_service" "asorkin_rq_web_app_dev" {
+resource "azurerm_linux_web_app" "asorkin_rq_web_app_dev" {
   name                = "asorkin-rq-web-app-development"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
+  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|6.0"
+    application_stack {
+      dotnet_version = "6.0"
+    }
   }
 
   tags = {
@@ -145,14 +143,16 @@ resource "azurerm_app_service" "asorkin_rq_web_app_dev" {
     }
 }
 
-resource "azurerm_app_service" "asorkin_rq_web_app_qa" {
+resource "azurerm_linux_web_app" "asorkin_rq_web_app_qa" {
   name                = "asorkin-rq-web-app-qa"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
+  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|6.0"
+    application_stack {
+      dotnet_version = "6.0"
+    }
   }
 
   tags = {
@@ -162,14 +162,16 @@ resource "azurerm_app_service" "asorkin_rq_web_app_qa" {
     }
 }
 
-resource "azurerm_app_service" "asorkin_rq_web_app_stage" {
+resource "azurerm_linux_web_app" "asorkin_rq_web_app_stage" {
   name                = "asorkin-rq-web-app-staging"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
+  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|6.0"
+    application_stack {
+      dotnet_version = "6.0"
+    }
   }
 
   tags = {
@@ -179,14 +181,16 @@ resource "azurerm_app_service" "asorkin_rq_web_app_stage" {
     }
 }
 
-resource "azurerm_app_service" "asorkin_rq_web_app_prod" {
+resource "azurerm_linux_web_app" "asorkin_rq_web_app_prod" {
   name                = "asorkin-rq-web-app-production"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_app_service_plan.asorkin_rq_sp.id
+  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
-    linux_fx_version = "DOTNETCORE|6.0"
+    application_stack {
+      dotnet_version = "6.0"
+    }
   }
 
   tags = {
