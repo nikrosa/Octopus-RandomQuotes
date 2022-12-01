@@ -48,7 +48,7 @@ jobs:
       - name: Set up DotNET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.1.402
+          dotnet-version: 6.0
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.14
         with:
