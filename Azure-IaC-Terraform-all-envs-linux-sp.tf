@@ -46,6 +46,15 @@ resource "azurerm_mssql_firewall_rule" "allow-octopus-server" {
   end_ip_address   = "4.227.214.210"
 }
 
+resource "azurerm_mssql_firewall_rule" "allow-azure-resources" {
+  depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
+  name                = "allow-azure-resources"
+  server_id         = azurerm_mssql_server.asorkin_rq_mssql_server.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
+
+
 # SQL Databases #
 
 resource "azurerm_mssql_database" "asorkin_rq_database_dev" {
