@@ -128,7 +128,7 @@ resource "azurerm_linux_web_app" "asorkin_rq_web_app_dev" {
   name                = "asorkin-rq-web-app-development"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
+  service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
     application_stack {
@@ -147,7 +147,7 @@ resource "azurerm_linux_web_app" "asorkin_rq_web_app_qa" {
   name                = "asorkin-rq-web-app-qa"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
+  service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
     application_stack {
@@ -166,7 +166,7 @@ resource "azurerm_linux_web_app" "asorkin_rq_web_app_stage" {
   name                = "asorkin-rq-web-app-staging"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
+  service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
     application_stack {
@@ -185,7 +185,7 @@ resource "azurerm_linux_web_app" "asorkin_rq_web_app_prod" {
   name                = "asorkin-rq-web-app-production"
   resource_group_name             = "#{Project.Azure.RandomQuotes.ResourceGroup.Name}"
   location                        = "#{Project.Azure.PrimaryLocation.Name}"
-  app_service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
+  service_plan_id     = azurerm_service_plan.asorkin_rq_sp.id
 
   site_config {
     application_stack {
