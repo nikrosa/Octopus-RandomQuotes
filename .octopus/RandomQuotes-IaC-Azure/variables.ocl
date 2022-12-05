@@ -87,21 +87,21 @@ variable "EnvironmentName" {
 }
 
 variable "Project.Azure.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server12" {}
+    value "asorkin-rq-mssql-server13" {}
 }
 
 variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp12" {}
+    value "asorkin-rq-sp13" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa12" {}
+    value "asorkinsa13" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc12" {}
+    value "asorkinsc13" {}
 }
 
 variable "Project.Azure.RandomQuotes.WebApp.Name" {
-    value "asorkin-rq-web-app12" {}
+    value "asorkin-rq-web-app" {}
 }
