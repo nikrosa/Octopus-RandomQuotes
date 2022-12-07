@@ -3,7 +3,7 @@ name: RandomQuotes-build-test
 on:
   push:
     branches: 
-      - build-file
+      - k8s-build-and-docker
   workflow_dispatch:
 
 env:
