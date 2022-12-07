@@ -92,7 +92,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: RandomQuotes:randomquotes:${{ needs.get-release-information.outputs.VERSION }}
+          tags: RandomQuotes/randomquotes:${{ needs.get-release-information.outputs.VERSION }}
 
 #      - name: build website
 #        env:
