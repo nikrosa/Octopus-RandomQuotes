@@ -90,9 +90,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: RandomQuotes
+          context: .
           push: true
-          tags: Deploy container to Kubernetes:randomquotes:${{ needs.get-release-information.outputs.VERSION }}
+          tags: Deploy container to RandomQuotes:randomquotes:${{ needs.get-release-information.outputs.VERSION }}
 
 #      - name: build website
 #        env:
