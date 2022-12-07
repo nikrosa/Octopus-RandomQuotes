@@ -90,7 +90,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: RandomQuotes
+          context: ./src/RandomQuotes
           push: true
           tags: RandomQuotes/randomquotes:${{ needs.get-release-information.outputs.VERSION }}
 
