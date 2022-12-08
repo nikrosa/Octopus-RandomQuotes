@@ -58,10 +58,6 @@ variable "Project.Azure.RandomQuotes.Role" {
     value "RandomQuotes-UI-AzureWebApp" {}
 }
 
-variable "Project.Azure.RandomQuotes.DB.User" {
-    value "asorkin-admin" {}
-}
-
 variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
     value "asorkin-randomquotes" {}
 }
@@ -104,4 +100,8 @@ variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
 
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
     value "asorkinsc14" {}
+}
+
+variable "Project.Azure.RandomQuotes.DB.User" {
+    value "asorkin-admin-test" {}
 }
