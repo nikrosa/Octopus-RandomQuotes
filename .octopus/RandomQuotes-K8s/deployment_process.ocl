@@ -107,7 +107,7 @@ step "deploy-web-app" {
             Octopus.Action.KubernetesContainers.ServiceName = "randomquotes"
             Octopus.Action.KubernetesContainers.ServiceNameType = "External"
             Octopus.Action.KubernetesContainers.ServicePorts = "[{\"name\":\"http\",\"port\":\"80\",\"targetPort\":\"80\",\"nodePort\":\"\",\"protocol\":\"TCP\"}]"
-            Octopus.Action.KubernetesContainers.ServiceType = "ClusterIP"
+            Octopus.Action.KubernetesContainers.ServiceType = "LoadBalancer"
             Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
