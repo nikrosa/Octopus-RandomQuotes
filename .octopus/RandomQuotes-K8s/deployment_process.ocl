@@ -99,7 +99,7 @@ step "deploy-web-app" {
             Octopus.Action.KubernetesContainers.DeploymentLabels = "{\"component\":\"web\"}"
             Octopus.Action.KubernetesContainers.DeploymentName = "randomquotes"
             Octopus.Action.KubernetesContainers.DeploymentResourceType = "Deployment"
-            Octopus.Action.KubernetesContainers.DeploymentStyle = "Recreate"
+            Octopus.Action.KubernetesContainers.DeploymentStyle = "RollingUpdate"
             Octopus.Action.KubernetesContainers.DeploymentWait = "Wait"
             Octopus.Action.KubernetesContainers.IngressAnnotations = "[]"
             Octopus.Action.KubernetesContainers.PodManagementPolicy = "OrderedReady"
