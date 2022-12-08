@@ -86,22 +86,22 @@ variable "EnvironmentName" {
     value "#{Octopus.Environment.Name}" {}
 }
 
+variable "Project.Azure.RandomQuotes.WebApp.Name" {
+    value "asorkin-rq-web-app" {}
+}
+
 variable "Project.Azure.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server13" {}
+    value "asorkin-rq-mssql-server14" {}
 }
 
 variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp13" {}
+    value "asorkin-rq-sp14" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa13" {}
+    value "asorkinsa14" {}
 }
 
 variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc13" {}
-}
-
-variable "Project.Azure.RandomQuotes.WebApp.Name" {
-    value "asorkin-rq-web-app" {}
+    value "asorkinsc14" {}
 }
