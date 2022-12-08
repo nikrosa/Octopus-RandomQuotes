@@ -84,34 +84,3 @@ step "deploy-the-database-changes" {
         }
     }
 }
-
-step "deploy-to-web-app" {
-    name = "Deploy to Web App"
-    properties = {
-        Octopus.Action.TargetRoles = "RandomQuotes-UI-AzureWebApp"
-    }
-
-    action {
-        action_type = "Octopus.AzureAppService"
-        properties = {
-            Octopus.Action.Azure.DeploymentType = "Package"
-            Octopus.Action.EnabledFeatures = "Octopus.Features.JsonConfigurationVariables,Octopus.Features.ConfigurationTransforms,Octopus.Features.SubstituteInFiles"
-            Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "octopus-server-built-in"
-            Octopus.Action.Package.JsonConfigurationVariablesTargets = "appsettings.json"
-            Octopus.Action.Package.PackageId = "RandomQuotes"
-            Octopus.Action.RunOnServer = "false"
-            OctopusUseBundledTooling = "False"
-        }
-        worker_pool_variable = ""
-
-        packages {
-            acquisition_location = "Server"
-            feed = "octopus-server-built-in"
-            package_id = "RandomQuotes"
-            properties = {
-                SelectionMode = "immediate"
-            }
-        }
-    }
-}
