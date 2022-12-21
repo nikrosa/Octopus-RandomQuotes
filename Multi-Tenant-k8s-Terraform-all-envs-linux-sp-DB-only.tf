@@ -153,22 +153,6 @@ resource "azurerm_mssql_database" "RandomQuotes_Internal_Staging" {
   }
 }
 
-resource "azurerm_mssql_database" "RandomQuotes_Internal_Production" {
-  depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
-  name           = "RandomQuotes_Internal_Production"
-  server_id      = azurerm_mssql_server.asorkin_rq_mssql_server.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 1
-  read_scale     = false
-  sku_name       = "S0"
-  zone_redundant = false
-  tags = {
-    tenant      = "Internal"
-    environment = "Production"    	
-  }
-}
-
 ###########################################
 # Azure Service Plan #
 ###########################################
