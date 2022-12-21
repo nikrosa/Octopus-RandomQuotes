@@ -124,3 +124,48 @@ step "deploy-web-app" {
         }
     }
 }
+
+step "print-success-message-for-14-x-channel" {
+    name = "Print Success Message for 14.x Channel"
+
+    action {
+        action_type = "Octopus.Script"
+        channels = ["14-x"]
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Deployment via 14.x channel completed!\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "default-worker-pool"
+    }
+}
+
+step "print-success-message-for-15-x-channel" {
+    name = "Print Success Message for 15.x Channel"
+
+    action {
+        action_type = "Octopus.Script"
+        channels = ["15-x"]
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Deployment via 15.x channel completed!\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "default-worker-pool"
+    }
+}
+
+step "print-success-message-for-16-x-channel" {
+    name = "Print Success Message for 16.x Channel"
+
+    action {
+        action_type = "Octopus.Script"
+        channels = ["16-x"]
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Deployment via 16.x channel completed!\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+        }
+        worker_pool = "default-worker-pool"
+    }
+}
