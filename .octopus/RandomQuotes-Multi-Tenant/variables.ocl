@@ -50,26 +50,26 @@ variable "Project.Multi-Tenant.RandomQuotes.DB.User" {
     value "asorkin-admin" {}
 }
 
-variable "Project.Multi-Tenant.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server15" {}
-}
-
 variable "Project.Multi-Tenant.RandomQuotes.ResourceGroup.Name" {
     value "asorkin-randomquotes" {}
 }
 
+variable "Project.Connection.String" {
+    value "Server=tcp:#{Project.Multi-Tenant.RandomQuotes.MSSQL.Server}.database.windows.net,1433;Initial Catalog=#{Project.Multi-Tenant.RandomQuotes.DB.Name};Persist Security Info=False;User ID=#{Project.Multi-Tenant.RandomQuotes.DB.User};Password=#{Project.Multi-Tenant.RandomQuotes.DB.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
+}
+
+variable "Project.Multi-Tenant.RandomQuotes.MSSQL.Server" {
+    value "asorkin-rq-mssql-server16" {}
+}
+
 variable "Project.Multi-Tenant.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp15" {}
+    value "asorkin-rq-sp16" {}
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa15" {}
+    value "asorkinsa16" {}
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc15" {}
-}
-
-variable "Project.Connection.String" {
-    value "Server=tcp:#{Project.Multi-Tenant.RandomQuotes.MSSQL.Server}.database.windows.net,1433;Initial Catalog=#{Project.Multi-Tenant.RandomQuotes.DB.Name};Persist Security Info=False;User ID=#{Project.Multi-Tenant.RandomQuotes.DB.User};Password=#{Project.Multi-Tenant.RandomQuotes.DB.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
+    value "asorkinsc16" {}
 }
