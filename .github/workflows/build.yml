@@ -92,7 +92,7 @@ jobs:
         with:
           context: ./src/
           push: true
-          tags: octopusasorkin/randomquotes:14.5
+          tags: octopusasorkin/randomquotes:15.5
 
 #      - name: build website
 #        env:
