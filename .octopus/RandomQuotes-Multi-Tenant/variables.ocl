@@ -1,0 +1,107 @@
+variable "ConnectionStrings:Database" {
+    value "#{Project.Connection.String}" {}
+}
+
+variable "Project.Database.User" {
+    value "RQ_user_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
+
+variable "DefaultConnection" {
+    value "#{Project.Connection.String}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
+
+variable "Project.Database.Report.Path" {
+    value "C:\\RandomQuotes\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
+
+variable "Project.Website.Port" {
+    value "8080" {
+        environment = ["development"]
+    }
+
+    value "8081" {
+        environment = ["qa"]
+    }
+
+    value "8082" {
+        environment = ["staging"]
+    }
+
+    value "8083" {
+        environment = ["production"]
+    }
+}
+
+variable "Project.Azure.PrimaryLocation.Name" {
+    value "eastus" {}
+}
+
+variable "Project.Azure.RandomQuotes.DB.Name" {
+    value "RandomQuotes_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
+}
+
+variable "Project.Azure.Account.Name" {
+    type = "AzureAccount"
+
+    value "asorkin-azure" {}
+}
+
+variable "Project.Azure.RandomQuotes.Role" {
+    value "RandomQuotes-UI-AzureWebApp" {}
+}
+
+variable "Project.Azure.RandomQuotes.ResourceGroup.Name" {
+    value "asorkin-randomquotes" {}
+}
+
+variable "Project.Connection.String" {
+    value "Server=tcp:#{Project.Azure.RandomQuotes.MSSQL.Server}.database.windows.net,1433;Initial Catalog=#{Project.Azure.RandomQuotes.DB.Name};Persist Security Info=False;User ID=#{Project.Azure.RandomQuotes.DB.User};Password=#{Project.Azure.RandomQuotes.DB.Password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" {}
+}
+
+variable "Octopus.Azure.Account" {
+    type = "AzureAccount"
+
+    value "asorkin-azure" {
+        description = ""
+    }
+}
+
+variable "AppVersion" {
+    value "#{Octopus.Release.Number}" {}
+}
+
+variable "EnvironmentName" {
+    value "#{Octopus.Environment.Name}" {}
+}
+
+variable "Project.Azure.RandomQuotes.WebApp.Name" {
+    value "asorkin-rq-web-app" {}
+}
+
+variable "Project.Azure.RandomQuotes.DB.User" {
+    value "asorkin-admin" {}
+}
+
+variable "Project.Azure.RandomQuotes.MSSQL.Server" {
+    value "asorkin-rq-mssql-server15" {}
+}
+
+variable "Project.Azure.RandomQuotes.ServicePlan.Name" {
+    value "asorkin-rq-sp15" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageAccount.Name" {
+    value "asorkinsa15" {}
+}
+
+variable "Project.Azure.RandomQuotes.StorageContainer.Name" {
+    value "asorkinsc15" {}
+}
