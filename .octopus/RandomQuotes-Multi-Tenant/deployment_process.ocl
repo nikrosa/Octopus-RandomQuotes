@@ -88,7 +88,7 @@ step "deploy-the-database-changes" {
 step "deploy-web-app" {
     name = "Deploy Web App"
     properties = {
-        Octopus.Action.TargetRoles = "RandomQuotes-UI-K8s"
+        Octopus.Action.TargetRoles = "RandomQuotes-UI-Multi-Tenant"
     }
 
     action {
