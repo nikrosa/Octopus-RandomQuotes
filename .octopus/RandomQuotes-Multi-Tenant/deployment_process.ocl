@@ -104,7 +104,7 @@ step "deploy-web-app" {
             Octopus.Action.KubernetesContainers.IngressAnnotations = "[]"
             Octopus.Action.KubernetesContainers.PodManagementPolicy = "OrderedReady"
             Octopus.Action.KubernetesContainers.Replicas = "1"
-            Octopus.Action.KubernetesContainers.ServiceName = "randomquotes-#{Octopus.Environment.Name | ToLower}"
+            Octopus.Action.KubernetesContainers.ServiceName = "randomquotes-#{Octopus.Deployment.Tenant.Name | ToLower}-#{Octopus.Environment.Name | ToLower}"
             Octopus.Action.KubernetesContainers.ServiceNameType = "External"
             Octopus.Action.KubernetesContainers.ServicePorts = "[{\"name\":\"http\",\"port\":\"80\",\"targetPort\":\"80\",\"nodePort\":\"\",\"protocol\":\"TCP\"}]"
             Octopus.Action.KubernetesContainers.ServiceType = "LoadBalancer"
