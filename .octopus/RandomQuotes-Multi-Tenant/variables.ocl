@@ -26,10 +26,6 @@ variable "AppVersion" {
     value "#{Octopus.Release.Number}" {}
 }
 
-variable "EnvironmentName" {
-    value "#{Octopus.Environment.Name}" {}
-}
-
 variable "Project.Multi-Tenant.Account.Name" {
     type = "AzureAccount"
 
@@ -38,12 +34,6 @@ variable "Project.Multi-Tenant.Account.Name" {
 
 variable "Project.Multi-Tenant.PrimaryLocation.Name" {
     value "eastus" {}
-}
-
-variable "Project.Multi-Tenant.RandomQuotes.DB.Name" {
-    value "RandomQuotes_#{Octopus.Environment.Name}" {
-        environment = ["development", "qa", "staging", "production"]
-    }
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.DB.User" {
@@ -72,4 +62,8 @@ variable "Project.Multi-Tenant.RandomQuotes.StorageAccount.Name" {
 
 variable "Project.Multi-Tenant.RandomQuotes.StorageContainer.Name" {
     value "asorkinsc16" {}
+}
+
+variable "EnvironmentName" {
+    value "#{Octopus.Deployment.Tenant.Name}-#{Octopus.Environment.Name}" {}
 }
