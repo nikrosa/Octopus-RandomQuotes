@@ -8,12 +8,6 @@ variable "DefaultConnection" {
     }
 }
 
-variable "Project.Database.Report.Path" {
-    value "C:\\RandomQuotes\\DatabaseReports\\RandomQuotes_#{Octopus.Environment.Name}" {
-        environment = ["development", "qa", "staging", "production"]
-    }
-}
-
 variable "Octopus.Azure.Account" {
     type = "AzureAccount"
 
@@ -66,4 +60,10 @@ variable "Project.Multi-Tenant.RandomQuotes.StorageContainer.Name" {
 
 variable "EnvironmentName" {
     value "#{Octopus.Deployment.Tenant.Name}-#{Octopus.Environment.Name}" {}
+}
+
+variable "Project.Database.Report.Path" {
+    value "C:\\RandomQuotes\\DatabaseReports\\RandomQuotes_#{Octopus.Deployment.Tenant.Name}_#{Octopus.Environment.Name}" {
+        environment = ["development", "qa", "staging", "production"]
+    }
 }
