@@ -132,7 +132,7 @@ step "print-success-message-for-14-x-channel" {
         action_type = "Octopus.Script"
         channels = ["14-x"]
         properties = {
-            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 14.x channel completed!\""
+            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 14.x channel completed successfully!\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -147,7 +147,7 @@ step "print-success-message-for-15-x-channel" {
         action_type = "Octopus.Script"
         channels = ["15-x"]
         properties = {
-            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 15.x channel completed!\""
+            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 15.x channel completed successfully!\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -162,7 +162,7 @@ step "print-success-message-for-16-x-channel" {
         action_type = "Octopus.Script"
         channels = ["16-x"]
         properties = {
-            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 16.x channel completed!\""
+            Octopus.Action.Script.ScriptBody = "Write-Highlight \"Deployment via 16.x channel completed successfully!\""
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
