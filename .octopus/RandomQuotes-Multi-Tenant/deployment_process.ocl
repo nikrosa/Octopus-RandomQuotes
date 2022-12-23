@@ -7,7 +7,7 @@ step "generate-database-delta-report" {
             Octopus.Action.Script.ScriptBody = <<-EOT
                 $packagePath = $OctopusParameters["Octopus.Action.Package[RandomQuotes.DbUp].ExtractedPath"]
                 $connectionString = $OctopusParameters["Project.Connection.String"]
-                $environmentName = $OctopusParameters["Octopus.Environment.Name"]
+                $environmentName = $OctopusParameters["Octopus.Deployment.Tenant.Name"]_$OctopusParameters["Octopus.Environment.Name"]
                 $reportPath = $OctopusParameters["Project.Database.Report.Path"]
                 
                 cd $packagePath
