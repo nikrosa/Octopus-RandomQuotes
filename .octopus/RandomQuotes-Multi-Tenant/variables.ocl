@@ -63,7 +63,7 @@ variable "EnvironmentName" {
 }
 
 variable "Project.Database.Report.Path" {
-    value "C:\\RandomQuotes\\DatabaseReports\\RandomQuotes_#{Octopus.Deployment.Tenant.Name}_#{Octopus.Environment.Name}" {
+    value "C:\\RandomQuotes\\DatabaseReports" {
         environment = ["development", "qa", "staging", "production"]
     }
 }
