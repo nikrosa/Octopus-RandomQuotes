@@ -53,17 +53,17 @@ variable "Project.Database.Report.Path" {
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.MSSQL.Server" {
-    value "asorkin-rq-mssql-server17" {}
+    value "asorkin-rq-mssql-server18" {}
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.ServicePlan.Name" {
-    value "asorkin-rq-sp17" {}
+    value "asorkin-rq-sp18" {}
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.StorageAccount.Name" {
-    value "asorkinsa17" {}
+    value "asorkinsa18" {}
 }
 
 variable "Project.Multi-Tenant.RandomQuotes.StorageContainer.Name" {
-    value "asorkinsc17" {}
+    value "asorkinsc18" {}
 }
