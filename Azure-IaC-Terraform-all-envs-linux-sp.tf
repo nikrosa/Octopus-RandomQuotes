@@ -59,7 +59,7 @@ resource "azurerm_mssql_firewall_rule" "allow-azure-resources" {
 
 resource "azurerm_mssql_database" "asorkin_rq_database_dev" {
   depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
-  name           = "RandomQuotes_Development"
+  name           = "RandomQuotes_IaC_Development"
   server_id      = azurerm_mssql_server.asorkin_rq_mssql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
@@ -74,7 +74,7 @@ resource "azurerm_mssql_database" "asorkin_rq_database_dev" {
 
 resource "azurerm_mssql_database" "asorkin_rq_database_qa" {
   depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
-  name           = "RandomQuotes_QA"
+  name           = "RandomQuotes_IaC_QA"
   server_id      = azurerm_mssql_server.asorkin_rq_mssql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
@@ -89,7 +89,7 @@ resource "azurerm_mssql_database" "asorkin_rq_database_qa" {
 
 resource "azurerm_mssql_database" "asorkin_rq_database_stage" {
   depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
-  name           = "RandomQuotes_Staging"
+  name           = "RandomQuotes_IaC_Staging"
   server_id      = azurerm_mssql_server.asorkin_rq_mssql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
@@ -104,7 +104,7 @@ resource "azurerm_mssql_database" "asorkin_rq_database_stage" {
 
 resource "azurerm_mssql_database" "asorkin_rq_database_prod" {
   depends_on = [ azurerm_mssql_server.asorkin_rq_mssql_server ]
-  name           = "RandomQuotes_Production"
+  name           = "RandomQuotes_IaC_Production"
   server_id      = azurerm_mssql_server.asorkin_rq_mssql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
